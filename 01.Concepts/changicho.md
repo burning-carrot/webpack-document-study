@@ -156,3 +156,13 @@ ajax(`https://api.example.com?search=${query}`).then(handleResponse);
 애플리케이션이 오래될수록 더 많은 디펜던시들이 추가될 수 있다. 복잡한 문제들을 위해 오래된 디펜던시들을 빼지만, 코드에서는 제거되지 못할 수 있다.
 
 트리 쉐이킹은 정적 ES6 모듈의 특정 부분을 가져오는 import 구문의 이점을 사용해 이러한 문제를 해결할 수 있다.
+
+주로 Pacel과 Rollup이 좋은 성과를 내며 각 번들러의 특징은 다음과 같다.
+
+- Webpack은 Tree Shaking을 ES6 모듈에서만 지원을 한다. 그리고 package.json 파일에 "sideEffects" 항목을 필요로한다. 그리고 UglifyJS와 같은 minimize tool도 필요로한다.
+- Rollup은 기본적으로 코드를 정적으로 분석하고 실제로 사용하지 않는 것을 제외한다. 기존도구와 모듈을 기반으로 빌드가 가능하다.
+- Parcel은 ES6모듈, CommonJS모듈 모두에서 Tree Shaking을 지원한다. CommonJS를 사용하는 코드에서 효과적입니다. 또한 대부분의 작업을 캐싱하여 다시 빌드할경우 빠른 속도를 보여줌.
+
+Tree shaking을 통해 얼마나 Dead code를 지울 수 있는지는 아래의 사이트에서 확인할 수 있다. [Tree-shaking-example](https://github.com/mischnic/tree-shaking-example)
+
+- [자바스크립트 번들러 비교(https://sambalim.tistory.com/137)
