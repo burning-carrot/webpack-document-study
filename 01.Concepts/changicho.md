@@ -125,3 +125,34 @@ webpack은 커맨드 라인, 설정 파일에 정의 된 모듈 목록에서 시
 - import는 ES6(ES2015)에서 새롭게 도입된 키워드.
 
 [JavaScript 표준을 위한 움직임: CommonJS와 AMD](https://d2.naver.com/helloworld/12864)
+
+### webpack의 중복된 모듈 시나리오
+
+- [Finding and fixing duplicates in webpack with Inspectpack](https://formidable.com/blog/2018/finding-webpack-duplicates-with-inspectpack-plugin/)
+- [Performance in Jira front-end: solving bundle duplicates with Webpack and yarn](https://www.atlassian.com/engineering/performance-in-jira-front-end-solving-bundle-duplicates-with-webpack-and-yarn)
+
+### Tree shaking
+
+import 문에서 필요한 요소만 가져옴
+
+- [트리 쉐이킹으로 자바스크립트 페이로드 줄이기](https://ui.toast.com/weekly-pick/ko_20180716)
+
+```javascript
+// import the entire utils object with CommonJS
+const utils = require("./utils");
+const query = "Rollup";
+// use the ajax method of the utils object
+utils.ajax(`https://api.example.com?search=${query}`).then(handleResponse);
+```
+
+```javascript
+// import the ajax function with an ES6 import statement
+import { ajax } from "./utils";
+const query = "Rollup";
+// call the ajax function
+ajax(`https://api.example.com?search=${query}`).then(handleResponse);
+```
+
+애플리케이션이 오래될수록 더 많은 디펜던시들이 추가될 수 있다. 복잡한 문제들을 위해 오래된 디펜던시들을 빼지만, 코드에서는 제거되지 못할 수 있다.
+
+트리 쉐이킹은 정적 ES6 모듈의 특정 부분을 가져오는 import 구문의 이점을 사용해 이러한 문제를 해결할 수 있다.
