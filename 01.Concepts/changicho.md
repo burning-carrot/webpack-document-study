@@ -1,6 +1,6 @@
 # Concept
 
-webpack은 모던 Javascript 정적 모듈 번들러다.
+webpack은 모던 Javascript 정적 모듈 번들러다. 또한 webpack은 React 커뮤니티에서 채택한 주요 빌드 도구이다.
 
 `webpack 4.0.0` 버전 이후로는 별도의 설정 파일을 필요로 하지 않으나 사용자 요구에 따라 설정이 가능하다.
 
@@ -116,3 +116,12 @@ webpack에서는 `import`, `require.ensure`을 위한 `Promise`를 사용하기 
 webpack은 커맨드 라인, 설정 파일에 정의 된 모듈 목록에서 시작한다. (엔트리 포인트)
 
 애플리케이션에서 필요한 모든 모듈을 포함하는 `의존성 그래프`를 재귀적으로 빌드한 다음에, 모든 모듈을 작은 수(보통 하나)의 번들로 묶는다.
+
+### require
+
+브라우저는 require()을 지원하지 않는다.
+
+- require는 NodeJS에서 사용되고 있는 CommonJS 키워드.
+- import는 ES6(ES2015)에서 새롭게 도입된 키워드.
+
+[JavaScript 표준을 위한 움직임: CommonJS와 AMD](https://d2.naver.com/helloworld/12864)
