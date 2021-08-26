@@ -1,5 +1,6 @@
 ![](https://i.imgur.com/PvIiLa0.png)
 
+
 ## Concepts
 - 여러개의 파일을 하나의 파일로 합쳐주는 번들러
 - webpack이 애플리케이션을 처리할 때, 내부적으로 프로젝트에 필요한 모든 모듈을 매핑
