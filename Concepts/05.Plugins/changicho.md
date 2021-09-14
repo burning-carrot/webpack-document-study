@@ -1,8 +1,19 @@
 # Plugins
 
+Plugins은 웹팩의 중추이다.
+
 webpack 자체는 webpack 설정에서 사용하는 것과 동일한 플러그인 시스템으로 구축되어 있다.
 
 로더가 할 수 없는 다른 작업을 수행할 목적으로 제공.
+
+(로더의 역할 : 파일을 import 하거나 “로드”할 때 전처리해 모듈의 소스 코드에 변경 사항을 적용)
+
+차이점을 정리하면 다음과 같다.
+
+- loader는 파일을 해석하고 변환하는 과정에 관여하여 모듈을 처리
+- plugin은 해당 결과물의 형태를 바꾸는 역할을 하므로 번들링된 파일을 처리한다는 점
+
+따라서, 번들된 파일을 압축할 수도 있고 파일 복사, 추출, 별칭 사용 등의 부가 작업 가능, 파일별 커스텀 기능을 위해 사용함
 
 ## Anatomy (해부해보기)
 
@@ -19,6 +30,7 @@ apply 메소드는 webpack의 컴파일러에 의해서 호출되며, 전체 컴
 const pluginName = "ConsoleLogOnBuildWebpackPlugin";
 
 class ConsoleLogOnBuildWebpackPlugin {
+  // 해당 메소드는 webpack의 컴파일러에 의해서 호출됨
   apply(compiler) {
     compiler.hooks.run.tap(pluginName, (compilation) => {
       console.log("The webpack build process is starting!");
@@ -61,6 +73,7 @@ module.exports = {
     ],
   },
   plugins: [
+    // new로 인스턴스를 생성한다.
     new webpack.ProgressPlugin(), // 컴파일하는 동안 리포트를 사용자 정의로 생성 할 수 있다.
     new HtmlWebpackPlugin({ template: "./src/index.html" }), // script를 사용하여 my-first-webpack.bundle.js 파일을 포함하는 HTML 파일을 생성
   ],
@@ -84,4 +97,17 @@ new webpack.ProgressPlugin().apply(compiler);
 compiler.run(function (err, stats) {
   // ...
 });
+```
+
+이는 webpack 런타임과 매우 유사하다.
+
+```javascript
+// webpack/bin/webpack.js
+
+// ...
+compiler.apply(
+  new ProgressPlugin({
+    profile: argv.profile,
+  })
+);
 ```
