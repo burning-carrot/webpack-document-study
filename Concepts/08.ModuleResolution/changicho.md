@@ -1,5 +1,7 @@
 # Module Resolution
 
+(모듈 해석)
+
 모듈은 다음과 같이 다른 모듈을 의존하며 필요로 할 수 있다. (의존성)
 
 ```javascript
